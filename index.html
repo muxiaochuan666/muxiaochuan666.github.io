@@ -222,6 +222,16 @@ section{padding:84px 0;position:relative}
 }
 .copy-btn:hover{color:#fff;border-color:var(--border-strong);background:var(--surface-2)}
 
+/* ============ 下载安装提示 ============ */
+.dl-notice{
+  margin-top:26px;padding:18px 20px;border-radius:14px;text-align:left;
+  background:rgba(61,220,132,.07);border:1px solid rgba(61,220,132,.25);
+}
+.dl-notice-title{font-size:15px;font-weight:800;margin-bottom:10px;color:#7ee8a8}
+.dl-notice p{font-size:13.5px;color:var(--muted);margin-bottom:8px;line-height:1.65}
+.dl-notice p:last-child{margin-bottom:0}
+.dl-notice strong{color:#7ee8a8}
+
 /* ============ 隐私说明 ============ */
 .privacy{
   border-radius:var(--radius);padding:26px 26px;border:1px solid var(--border);
@@ -427,6 +437,11 @@ footer .copy{font-size:12.5px;color:var(--muted-2)}
           <span id="copyTxt">复制下载链接</span>
         </button>
       </div>
+      <div class="dl-notice">
+        <div class="dl-notice-title">📱 安装提示</div>
+        <p>下载完成后安装时，安卓系统可能提示「未知来源应用」或「危险文件」—— 这是系统的正常安全提醒，因为本 APP 使用个人签名证书打包，非应用商店上架应用。</p>
+        <p><strong>安装方法：</strong>点击「仍然安装」或前往「设置 → 安全 → 允许未知来源」开启权限即可正常安装。本 APK 经作者自主签名打包，安全无毒，请放心使用。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -447,7 +462,24 @@ footer .copy{font-size:12.5px;color:var(--muted-2)}
         <li>不会出售或向第三方共享你的个人数据。</li>
         <li>APP 所需的网络权限仅用于获取视频与热榜内容，权限用途均在安装时明示。</li>
       </ul>
-      <div class="warn">⚠️ 合规提醒：本 APP 仅分发作者自主开发的 HotVideo，不得包含违规、色情、侵权内容；禁止用于分发破解软件或盗版资源。请通过本页官方渠道下载，以防被篡改版本。</div>
+
+      <h3 style="margin-top:22px">📋 数据收集与存储规则</h3>
+      <ul>
+        <li><strong>收集范围：</strong>本 APP 仅在网络请求中传输必要的设备型号、系统版本（用于适配），不收集身份证、手机号等敏感个人信息。</li>
+        <li><strong>存储规则：</strong>用户产生的数据（浏览记录、偏好设置）仅存储在本地设备，不上传服务器，卸载即清除。</li>
+        <li><strong>API 调用：</strong>视频流和热榜数据通过公开接口获取，仅做内容展示，不做后台留存或用户画像分析。</li>
+        <li><strong>第三方服务：</strong>AI 聊天功能依赖第三方大语言模型 API，对话内容仅用于本次回复，不用于训练或长期存储。</li>
+      </ul>
+
+      <h3 style="margin-top:22px">⚠️ 合规声明</h3>
+      <ul>
+        <li>本 APP 为作者 <strong>木小川666</strong> 自主开发，仅分发 HotVideo 原创应用，不含任何破解、盗版资源。</li>
+        <li>APP 内所有内容来源于公开接口聚合展示，不存储、不传播任何视频源文件。</li>
+        <li>严禁利用本 APP 传播违规、色情、暴力、侵权内容，违者后果自负。</li>
+        <li>请仅通过本页官方渠道下载，以防被第三方篡改植入恶意代码。</li>
+      </ul>
+
+      <div class="warn">⚠️ 免责声明：本 APP 仅供学习交流使用，不用于商业用途。视频及热榜内容版权归原作者所有，本 APP 不承担因不当使用产生的任何法律责任。如有侵权请联系作者删除。</div>
     </div>
   </div>
 </section>
