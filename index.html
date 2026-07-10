@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="HotVideo 自制安卓热点视频 APP 下载站 — 仿抖音视频流、AI 聊天室、全网热榜。纯手机 AIDE 开发，GitHub Pages 免费托管。">
+<meta name="description" content="木小川666 - 个人主页 | 热爱技术，专注开发">
 <meta name="theme-color" content="#0c0d10">
-<meta property="og:title" content="HotVideo 热点视频 APP 下载">
-<meta property="og:description" content="仿抖音视频流 · AI 聊天室 · 全网热榜 | 纯手机 AIDE 自主开发">
+<meta property="og:title" content="木小川666 - 个人主页">
+<meta property="og:description" content="热爱技术，专注开发 | Android开发者 & 创作者">
 <meta property="og:type" content="website">
-<title>HotVideo 热点视频 APP 下载</title>
+<title>木小川666 | 个人主页</title>
 <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
 <style>
 /* ============ 设计令牌 ============ */
@@ -16,7 +16,7 @@
   --bg:#0c0d10;
   --bg-2:#101116;
   --surface:rgba(255,255,255,.04);
-  --surface-2:rgba(255,255,255,.065);
+  --surface-2:rgba(255,255,255,.08);
   --border:rgba(255,255,255,.09);
   --border-strong:rgba(255,255,255,.16);
   --text:#f5f5f7;
@@ -24,6 +24,7 @@
   --muted-2:#6f7079;
   --accent:#ff4d4f;
   --accent-2:#ff8a3d;
+  --accent-3:#3ddc84;
   --grad:linear-gradient(135deg,#ff4d4f 0%,#ff8a3d 100%);
   --grad-soft:linear-gradient(135deg,rgba(255,77,79,.18),rgba(255,138,61,.18));
   --maxw:980px;
@@ -44,228 +45,170 @@ body{
 body::before{
   content:"";position:fixed;inset:0;z-index:-2;
   background:
-    radial-gradient(620px 480px at 78% -8%,rgba(255,77,79,.20),transparent 60%),
-    radial-gradient(560px 460px at 8% 12%,rgba(255,138,61,.16),transparent 60%),
-    radial-gradient(700px 600px at 50% 120%,rgba(255,77,79,.10),transparent 60%),
+    radial-gradient(800px 600px at 75% -10%,rgba(255,77,79,.18),transparent 55%),
+    radial-gradient(600px 500px at 10% 20%,rgba(255,138,61,.14),transparent 55%),
+    radial-gradient(500px 400px at 50% 110%,rgba(61,220,132,.12),transparent 55%),
     var(--bg);
 }
 /* 颗粒噪点 */
 body::after{
-  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.045;
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.04;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 a{color:inherit;text-decoration:none}
 img,svg{display:block;max-width:100%}
-.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
 
-/* ============ 导航 ============ */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  backdrop-filter:saturate(140%) blur(14px);
-  -webkit-backdrop-filter:saturate(140%) blur(14px);
-  background:rgba(12,13,16,.55);
-  border-bottom:1px solid transparent;
-  transition:border-color .3s,background .3s;
+/* ============ Hero 个人介绍 ============ */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:80px 0 60px;text-align:center;
 }
-.nav.scrolled{border-color:var(--border);background:rgba(12,13,16,.78)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.3px}
-.brand .mark{width:30px;height:30px;border-radius:9px}
-.brand small{font-weight:600;color:var(--muted);font-size:12px;letter-spacing:.5px}
-.nav-links{display:flex;align-items:center;gap:6px}
-.nav-links a{padding:8px 13px;border-radius:10px;font-size:14px;color:var(--muted);transition:.2s}
-.nav-links a:hover{color:var(--text);background:var(--surface)}
-.gh-btn{
-  display:inline-flex;align-items:center;gap:7px;
-  padding:8px 14px;border-radius:11px;font-size:13px;font-weight:600;
-  border:1px solid var(--border-strong);background:var(--surface);transition:.25s;
+.hero-content{
+  animation:fadeUp .8s both;
 }
-.gh-btn:hover{border-color:var(--accent);color:#fff;box-shadow:0 0 0 3px rgba(255,77,79,.12)}
-@media(max-width:680px){.nav-links{display:none}}
+.avatar{
+  width:140px;height:140px;border-radius:50%;
+  margin:0 auto 28px;
+  background:var(--grad-soft);
+  border:3px solid rgba(255,138,61,.35);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 20px 40px -15px rgba(255,77,79,.35);
+  position:relative;overflow:hidden;
+}
+.avatar::before{
+  content:"";position:absolute;inset:0;
+  background:var(--grad);opacity:.15;
+}
+.avatar img{width:80px;height:80px;position:relative;z-index:1}
+.hero h1{
+  font-size:clamp(36px,8vw,56px);font-weight:900;
+  letter-spacing:-1px;margin-bottom:8px;
+}
+.hero .subtitle{
+  font-size:clamp(18px,3vw,22px);font-weight:700;color:var(--muted);
+  margin-bottom:16px;
+}
+.hero .bio{
+  max-width:520px;margin:0 auto 32px;color:var(--muted);font-size:16px;line-height:1.8;
+}
+.hero-links{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:40px;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 28px;border-radius:14px;font-size:16px;font-weight:700;
+  transition:transform .2s,box-shadow .2s;
+}
+.btn-primary{
+  background:var(--grad);color:#1a0d05;box-shadow:var(--shadow);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 26px 60px -18px rgba(255,77,79,.6)}
+.btn-ghost{
+  background:var(--surface);border:1px solid var(--border);color:var(--text);
+}
+.btn-ghost:hover{background:var(--surface-2);border-color:var(--border-strong)}
+.hero-tags{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:10px;font-size:14px;font-weight:600;
+  background:var(--surface);border:1px solid var(--border);color:var(--muted);
+}
+.tag svg{width:16px;height:16px}
 
-/* ============ 通用区块 ============ */
-section{padding:84px 0;position:relative}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:12.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--accent-2);padding:7px 13px;border-radius:999px;
-  border:1px solid rgba(255,138,61,.3);background:rgba(255,138,61,.07);
-}
-.sec-head{text-align:center;max-width:620px;margin:0 auto 46px}
-.sec-head h2{font-size:clamp(26px,4.4vw,38px);font-weight:800;letter-spacing:-.5px;margin:16px 0 10px}
-.sec-head p{color:var(--muted);font-size:15.5px}
+/* ============ 关于我 ============ */
+section{padding:80px 0}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 48px}
+.sec-head h2{font-size:clamp(28px,4.5vw,40px);font-weight:800;letter-spacing:-.5px;margin-bottom:12px}
+.sec-head p{color:var(--muted);font-size:16px}
 .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-/* ============ Hero ============ */
-.hero{padding:150px 0 70px;text-align:center}
-.hero .badge{
-  display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
-  color:#ffd9c2;padding:8px 15px;border-radius:999px;
-  border:1px solid rgba(255,138,61,.28);background:var(--grad-soft);margin-bottom:26px;
-  animation:fadeUp .7s both;
+.about-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
 }
-.hero h1{
-  font-size:clamp(46px,11vw,96px);font-weight:900;line-height:.98;letter-spacing:-2px;
-  margin-bottom:8px;animation:fadeUp .7s .05s both;
+@media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+.about-card{
+  padding:28px;border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);
+  transition:transform .25s,border-color .25s;
 }
-.hero .tagline{
-  font-size:clamp(18px,3.4vw,24px);font-weight:700;color:var(--text);
-  margin-bottom:18px;animation:fadeUp .7s .1s both;
-}
-.hero .desc{
-  max-width:560px;margin:0 auto 34px;color:var(--muted);font-size:16px;
-  animation:fadeUp .7s .15s both;
-}
-.cta-row{display:flex;flex-direction:column;align-items:center;gap:16px;animation:fadeUp .7s .2s both}
-.btn-dl{
-  display:inline-flex;align-items:center;gap:11px;
-  font-size:18px;font-weight:800;color:#1a0d05;
-  padding:17px 38px;border-radius:16px;background:var(--grad);
-  box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;
-  position:relative;overflow:hidden;
-}
-.btn-dl:hover{transform:translateY(-3px);box-shadow:0 26px 60px -18px rgba(255,77,79,.6)}
-.btn-dl:active{transform:translateY(-1px)}
-.btn-dl .dl-ico{width:22px;height:22px}
-.meta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;font-size:13.5px;color:var(--muted)}
-.meta-row .tag{display:inline-flex;align-items:center;gap:6px}
-.meta-row .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
-.backup-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:4px}
-.lnk-ghost{
-  display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--muted);
-  padding:9px 15px;border-radius:11px;border:1px solid var(--border);background:var(--surface);transition:.25s;
-}
-.lnk-ghost:hover{color:#fff;border-color:var(--border-strong);background:var(--surface-2)}
-.hero-stats{
-  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:46px;
-  animation:fadeUp .7s .28s both;
-}
-.stat{
-  min-width:120px;padding:18px 22px;border-radius:16px;
-  border:1px solid var(--border);background:var(--surface);
-}
-.stat b{display:block;font-size:28px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.stat span{font-size:12.5px;color:var(--muted)}
-
-/* ============ 功能卡片 ============ */
-.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(max-width:620px){.features-grid{grid-template-columns:1fr}}
-.fcard{
-  padding:26px 24px;border-radius:var(--radius);
-  border:1px solid var(--border);background:var(--surface);
-  transition:transform .25s,border-color .25s,background .25s;
-  position:relative;overflow:hidden;
-}
-.fcard::before{content:"";position:absolute;inset:0;background:var(--grad-soft);opacity:0;transition:opacity .3s}
-.fcard:hover{transform:translateY(-4px);border-color:rgba(255,138,61,.4)}
-.fcard:hover::before{opacity:1}
-.fcard>*{position:relative}
-.fcard .ico{
-  width:48px;height:48px;border-radius:13px;display:grid;place-items:center;margin-bottom:16px;
+.about-card:hover{transform:translateY(-4px);border-color:rgba(255,138,61,.4)}
+.about-card .icon{
+  width:52px;height:52px;border-radius:14px;
   background:var(--grad-soft);border:1px solid rgba(255,138,61,.25);
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;
 }
-.fcard .ico svg{width:25px;height:25px}
-.fcard h3{font-size:18px;font-weight:800;margin-bottom:7px}
-.fcard p{font-size:14.5px;color:var(--muted)}
+.about-card .icon svg{width:26px;height:26px}
+.about-card h3{font-size:20px;font-weight:800;margin-bottom:10px}
+.about-card p{font-size:15px;color:var(--muted);line-height:1.7}
 
-/* ============ 截图墙 ============ */
-.shots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:760px){.shots-grid{grid-template-columns:1fr;max-width:340px;margin:0 auto}}
-.shot{
-  border-radius:20px;overflow:hidden;border:1px solid var(--border);
-  background:var(--surface);cursor:zoom-in;transition:transform .3s,box-shadow .3s,border-color .3s;
+/* ============ 作品展示 ============ */
+.projects-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
 }
-.shot:hover{transform:translateY(-6px);border-color:rgba(255,138,61,.45);box-shadow:0 24px 50px -22px rgba(0,0,0,.7)}
-.shot img{width:100%;height:auto;aspect-ratio:9/16;object-fit:cover}
-.shot .cap{padding:12px 14px;font-size:13px;font-weight:600;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.shot .cap .pill{font-size:11px;color:var(--accent-2);border:1px solid rgba(255,138,61,.3);padding:2px 9px;border-radius:999px}
+@media(max-width:640px){.projects-grid{grid-template-columns:1fr}}
+.project-card{
+  border-radius:var(--radius);
+  background:var(--surface);border:1px solid var(--border);
+  overflow:hidden;transition:transform .25s,border-color .25s;
+}
+.project-card:hover{transform:translateY(-4px);border-color:rgba(255,138,61,.4)}
+.project-cover{
+  height:180px;background:var(--bg-2);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid var(--border);
+}
+.project-cover img{max-height:120px}
+.project-body{padding:22px}
+.project-body h3{font-size:18px;font-weight:800;margin-bottom:8px}
+.project-body p{font-size:14px;color:var(--muted);margin-bottom:14px}
+.project-meta{
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.project-meta span{
+  font-size:12px;padding:4px 10px;border-radius:8px;
+  background:var(--surface-2);color:var(--muted-2);
+}
+.project-status{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:10px;font-size:13px;font-weight:600;
+}
+.status-stopped{background:rgba(255,77,79,.12);border:1px solid rgba(255,77,79,.3);color:#ff7a7a}
+.status-dev{background:rgba(61,220,132,.12);border:1px solid rgba(61,220,132,.3);color:#7ee8a8}
 
-/* ============ 版本日志时间线 ============ */
-.timeline{position:relative;max-width:680px;margin:0 auto;padding-left:30px}
-.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--accent),var(--accent-2),transparent)}
-.tl-item{position:relative;padding:0 0 26px 26px}
-.tl-item::before{
-  content:"";position:absolute;left:-26px;top:4px;width:20px;height:20px;border-radius:50%;
-  background:var(--bg);border:3px solid var(--accent);box-shadow:0 0 0 4px rgba(255,77,79,.12);
+/* ============ 联系我 ============ */
+.contact-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
 }
-.tl-item.latest::before{background:var(--grad);border-color:transparent}
-.tl-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:5px}
-.tl-ver{font-size:15px;font-weight:800;color:#fff}
-.tl-badge{font-size:11px;font-weight:700;color:#1a0d05;background:var(--grad);padding:2px 9px;border-radius:999px}
-.tl-date{font-size:12.5px;color:var(--muted-2)}
-.tl-body{font-size:14.5px;color:var(--muted)}
-
-/* ============ 下载区 ============ */
-.dl-box{
-  border-radius:24px;padding:46px 34px;text-align:center;
-  border:1px solid rgba(255,138,61,.28);
-  background:
-    radial-gradient(420px 280px at 50% -20%,rgba(255,77,79,.22),transparent 70%),
-    var(--surface);
-  position:relative;overflow:hidden;
+@media(max-width:640px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{
+  padding:24px;border-radius:16px;text-align:center;
+  background:var(--surface);border:1px solid var(--border);
+  transition:transform .25s,border-color .25s,background .25s;
 }
-.dl-box h2{font-size:clamp(26px,5vw,40px);font-weight:900;letter-spacing:-.5px;margin-bottom:10px}
-.dl-box .sub{color:var(--muted);margin-bottom:28px;font-size:15.5px}
-.dl-options{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;align-items:center}
-.qr-wrap{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:10px}
-.qr-wrap .qr{
-  width:168px;height:168px;border-radius:16px;padding:10px;background:#fff;
-  display:grid;place-items:center;
+.contact-card:hover{
+  transform:translateY(-4px);border-color:var(--accent-3);
+  background:rgba(61,220,132,.06);
 }
-.qr-wrap .qr img{width:100%;height:100%;object-fit:contain}
-.qr-wrap .qr-fallback{font-size:12.5px;color:var(--muted);text-align:center;max-width:220px}
-.qr-wrap .qr-hint{font-size:12.5px;color:var(--muted-2)}
-.copy-btn{
-  display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--muted);
-  padding:9px 16px;border-radius:11px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:.25s;
-  font-family:inherit;
+.contact-card svg{
+  width:40px;height:40px;margin:0 auto 16px;color:var(--accent-3);
 }
-.copy-btn:hover{color:#fff;border-color:var(--border-strong);background:var(--surface-2)}
-
-/* ============ 下载安装提示 ============ */
-.dl-notice{
-  margin-top:26px;padding:18px 20px;border-radius:14px;text-align:left;
-  background:rgba(61,220,132,.07);border:1px solid rgba(61,220,132,.25);
-}
-.dl-notice-title{font-size:15px;font-weight:800;margin-bottom:10px;color:#7ee8a8}
-.dl-notice p{font-size:13.5px;color:var(--muted);margin-bottom:8px;line-height:1.65}
-.dl-notice p:last-child{margin-bottom:0}
-.dl-notice strong{color:#7ee8a8}
-
-/* ============ 隐私说明 ============ */
-.privacy{
-  border-radius:var(--radius);padding:26px 26px;border:1px solid var(--border);
-  background:var(--surface);max-width:760px;margin:0 auto;
-}
-.privacy h3{font-size:16px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:9px}
-.privacy ul{list-style:none;display:grid;gap:10px}
-.privacy li{font-size:14.5px;color:var(--muted);padding-left:24px;position:relative}
-.privacy li::before{content:"✓";position:absolute;left:0;top:0;color:var(--accent-2);font-weight:800}
-.privacy .warn{margin-top:16px;padding:13px 15px;border-radius:12px;font-size:13.5px;
-  background:rgba(255,138,61,.08);border:1px solid rgba(255,138,61,.25);color:#ffd9c2}
+.contact-card h3{font-size:16px;font-weight:800;margin-bottom:6px}
+.contact-card p{font-size:14px;color:var(--muted)}
 
 /* ============ 页脚 ============ */
-footer{border-top:1px solid var(--border);padding:40px 0 56px;margin-top:30px}
-footer .wrap{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-footer .brand{font-size:15px}
-footer .f-links{display:flex;gap:18px;flex-wrap:justify-content:center}
-footer .f-links a{font-size:13.5px;color:var(--muted);transition:.2s}
-footer .f-links a:hover{color:var(--accent-2)}
-footer .copy{font-size:12.5px;color:var(--muted-2)}
-
-/* ============ 灯箱 ============ */
-.lightbox{
-  position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
-  background:rgba(6,7,9,.92);backdrop-filter:blur(8px);padding:24px;
+footer{
+  border-top:1px solid var(--border);
+  padding:40px 0 60px;text-align:center;
 }
-.lightbox.open{display:flex;animation:fade .25s}
-.lightbox img{max-height:88vh;max-width:90vw;border-radius:16px;box-shadow:0 30px 80px -20px #000}
-.lightbox .close{position:absolute;top:20px;right:24px;font-size:34px;color:#fff;cursor:pointer;line-height:1;opacity:.8}
-.lightbox .close:hover{opacity:1}
+footer p{font-size:14px;color:var(--muted)}
+footer .heart{color:var(--accent)}
 
-/* ============ 动画 / 滚动揭示 ============ */
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-@keyframes fade{from{opacity:0}to{opacity:1}}
+/* ============ 动画 ============ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}*{animation:none!important}}
@@ -273,213 +216,137 @@ footer .copy{font-size:12.5px;color:var(--muted-2)}
 </head>
 <body>
 
-<!-- ============ 导航 ============ -->
-<nav class="nav" id="nav">
+<!-- ============ Hero 个人介绍 ============ -->
+<section class="hero">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="HotVideo">
-      <img class="mark" src="assets/icon.svg" alt="">
-      <span>HotVideo<small>热点视频</small></span>
-    </a>
-    <div class="nav-links">
-      <a href="#features">功能</a>
-      <a href="#screens">截图</a>
-      <a href="#changelog">版本</a>
-      <a href="#download">下载</a>
-      <a href="#privacy">隐私</a>
-    </div>
-    <a class="gh-btn" data-release href="#" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
-      GitHub
-    </a>
-  </div>
-</nav>
-
-<span id="top"></span>
-
-<!-- ============ Hero ============ -->
-<header class="hero">
-  <div class="wrap">
-    <span class="badge">🔥 全网热点视频 · 自制安卓 APP</span>
-    <h1>Hot<span class="grad-text">Video</span></h1>
-    <div class="tagline">热点，一触即发</div>
-    <p class="desc">纯手机 AIDE 自主开发的安卓热点视频 APP — 仿抖音视频流、AI 聊天室、全网热榜，8 版本迭代打磨。</p>
-    <div class="cta-row">
-      <a class="btn-dl" data-cdn href="https://cdn.jsdelivr.net/gh/muxiaochuan666/muxiaochuan666.github.io@main/HotVideo.apk" download>
-        <svg class="dl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-        立即下载最新版 APK
-      </a>
-      <div class="meta-row">
-        <span class="tag"><span class="dot"></span>版本 V8</span>
-        <span class="tag"><span class="dot"></span>更新于 2026-07-09</span>
-        <span class="tag"><span class="dot"></span>Android 5.0+</span>
-        <span class="tag"><span class="dot"></span>免费 · 无广告</span>
+    <div class="hero-content">
+      <div class="avatar">
+        <img src="assets/icon.svg" alt="头像">
       </div>
-      <div class="backup-row">
-        <a class="lnk-ghost" data-release href="#" target="_blank" rel="noopener">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
-          GitHub Release 备用下载
+      <h1>木小川<span class="grad-text">666</span></h1>
+      <p class="subtitle">Android 开发者 & 创作者</p>
+      <p class="bio">热爱技术，专注开发。用手机 AIDE 从零打造完整 APP，探索移动开发的无限可能。相信每个想法都值得被实现。</p>
+      <div class="hero-links">
+        <a class="btn btn-primary" href="https://github.com/muxiaochuan666" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          GitHub 主页
         </a>
-        <a class="lnk-ghost" href="https://wwazy.lanzouv.com/ixLRC3vka76d" target="_blank" rel="noopener">蓝奏云（密码：3xum）</a>
-      </div>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><b>8</b><span>版本迭代</span></div>
-      <div class="stat"><b>3</b><span>核心模块</span></div>
-      <div class="stat"><b>0</b><span>托管费用</span></div>
-      <div class="stat"><b>100%</b><span>自主开发</span></div>
-    </div>
-  </div>
-</header>
-
-<!-- ============ 功能 ============ -->
-<section id="features">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">✦ 核心功能</span>
-      <h2>一款手机打造的<span class="grad-text">热点视频</span>体验</h2>
-      <p>从视频流到 AI 对话，从热榜到沉浸交互，全部在 AIDE 中一行行敲出来。</p>
-    </div>
-    <div class="features-grid">
-      <div class="fcard reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5L5 19M5 5h6M19 13v6"/></svg></div>
-        <h3>仿抖音视频流</h3>
-        <p>上下滑动无限刷新，沉浸式全屏播放，点赞、评论、分享一键直达。</p>
-      </div>
-      <div class="fcard reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L4 22l1.6-4.5A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
-        <h3>AI 聊天室</h3>
-        <p>内置智能助手，陪聊、推荐你感兴趣的热点内容，随时响应你的需求。</p>
-      </div>
-      <div class="fcard reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s4 4 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 2-3 6a6 6 0 0 0 12 0c0-6-6-12-6-12z"/></svg></div>
-        <h3>全网热榜</h3>
-        <p>实时聚合各大平台热搜，5 分钟刷新一次，热点不再错过。</p>
-      </div>
-      <div class="fcard reveal">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
-        <h3>纯手机 AIDE 开发</h3>
-        <p>全程在手机上编码、调试、签名打包，轻量流畅，零服务器依赖。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 截图 ============ -->
-<section id="screens">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">✦ 界面预览</span>
-      <h2>看看<span class="grad-text">长什么样</span></h2>
-      <p>三大核心界面一览（点击图片可放大查看）。</p>
-    </div>
-    <div class="shots-grid">
-      <figure class="shot reveal" data-img="assets/screenshots/video-feed.svg">
-        <img src="assets/screenshots/video-feed.svg" alt="视频列表界面" loading="lazy">
-        <figcaption class="cap">视频列表 <span class="pill">热点推荐</span></figcaption>
-      </figure>
-      <figure class="shot reveal" data-img="assets/screenshots/ai-chat.svg">
-        <img src="assets/screenshots/ai-chat.svg" alt="聊天列表界面" loading="lazy">
-        <figcaption class="cap">聊天列表 <span class="pill">智能助手</span></figcaption>
-      </figure>
-      <figure class="shot reveal" data-img="assets/screenshots/hot-list.svg">
-        <img src="assets/screenshots/hot-list.svg" alt="热点热榜界面" loading="lazy">
-        <figcaption class="cap">热点热榜 <span class="pill">多平台聚合</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 版本日志 ============ -->
-<section id="changelog">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">✦ 迭代历程</span>
-      <h2>V1 → V8<span class="grad-text"> 持续进化</span></h2>
-      <p>每一次更新都有迹可循，与开发文档一一对应。</p>
-    </div>
-    <div class="timeline">
-      <div class="tl-item latest reveal"><div class="tl-head"><span class="tl-ver">V8</span><span class="tl-badge">最新</span><span class="tl-date">2026-07-09</span></div><div class="tl-body">AI 对话体验升级，完善隐私合规说明，正式签名打包发布，上线下载站。</div></div>
-      <div class="tl-item reveal"><div class="tl-head"><span class="tl-ver">V7</span><span class="tl-date">2026-06</span></div><div class="tl-body">全新深色 UI 改版，确定橙红主题，统一视觉与交互动效。</div></div>
-      <div class="tl-item reveal"><div class="tl-head"><span class="tl-ver">V6</span><span class="tl-date">2026-05</span></div><div class="tl-body">性能优化，修复视频流滑动卡顿，内存占用下降约 30%。</div></div>
-      <div class="tl-item reveal"><div class="tl-head"><span class="tl-ver">V5</span><span class="tl-date">2026-04</span></div><div class="tl-body">接入全网热榜模块，实时聚合多平台热搜，定时刷新机制上线。</div></div>
-      <div class="tl-item reveal"><div class="tl-head"><span class="tl-ver">V4</span><span class="tl-date">2026-03</span></div><div class="tl-body">上线 AI 聊天室，智能助手可推荐内容、回答问题。</div></div>
-      <div class="tl-item reveal"><div class="tl-head"><span class="tl-ver">V3</span><span class="tl-date">2026-02</span></div><div class="tl-body">完善点赞、评论、分享交互，加入侧边操作栏。</div></div>
-      <div class="tl-item reveal"><div class="tl-head"><span class="tl-ver">V2</span><span class="tl-date">2026-01</span></div><div class="tl-body">接入视频播放引擎，实现上下滑动切换视频流。</div></div>
-      <div class="tl-item reveal"><div class="tl-head"><span class="tl-ver">V1</span><span class="tl-date">2025-12</span></div><div class="tl-body">项目立项，AIDE 搭建基础框架，首页视频流原型完成。</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 下载 ============ -->
-<section id="download">
-  <div class="wrap">
-    <div class="dl-box reveal">
-      <h2>马上<span class="grad-text">下载体验</span></h2>
-      <p class="sub">选择任意渠道获取 HotVideo 最新版安装包</p>
-      <div class="dl-options">
-        <a class="btn-dl" data-cdn href="https://cdn.jsdelivr.net/gh/muxiaochuan666/muxiaochuan666.github.io@main/HotVideo.apk" download>
-          <svg class="dl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-          CDN 加速下载
+        <a class="btn btn-ghost" href="#projects">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          查看作品
         </a>
-        <a class="lnk-ghost" data-release href="#" target="_blank" rel="noopener">GitHub Release</a>
-        <a class="lnk-ghost" href="https://wwazy.lanzouv.com/ixLRC3vka76d" target="_blank" rel="noopener">蓝奏云（密码：3xum）</a>
       </div>
-      <div class="qr-wrap">
-        <div class="qr" id="qrBox">
-          <img id="qrImg" alt="扫码下载二维码">
-          <div class="qr-fallback" id="qrFallback" style="display:none">
-            <strong>扫描下方二维码</strong><br>手机扫码即可下载
+      <div class="hero-tags">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>Android 开发</span>
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>AIDE</span>
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>创作者</span>
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L4 22l1.6-4.5A8.5 8.5 0 1 1 21 11.5z"/></svg>开源爱好者</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 关于我 ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>关于<span class="grad-text">我</span></h2>
+      <p>一个热爱用代码创造价值的开发者</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3>全栈思维</h3>
+        <p>从界面设计到后端逻辑，从需求分析到产品落地，我享受每一个创造的过程。</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <h3>手机开发</h3>
+        <p>突破传统开发模式，用 AIDE 在手机上完成完整的 APP 开发、调试、打包流程。</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>持续迭代</h3>
+        <p>8 个版本迭代打磨，每个功能都经过反复测试优化，追求极致的用户体验。</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#ff8a3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L4 22l1.6-4.5A8.5 8.5 0 1 1 21 11.5z"/></svg></div>
+        <h3>开放分享</h3>
+        <p>代码开源，经验共享。相信技术应该让更多人受益，而不是成为壁垒。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 作品展示 ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>我的<span class="grad-text">作品</span></h2>
+      <p>每个项目都是一次成长的见证</p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-cover">
+          <img src="assets/icon.svg" alt="HotVideo">
+        </div>
+        <div class="project-body">
+          <h3>HotVideo 热点视频</h3>
+          <p>仿抖音视频流、AI 聊天室、全网热榜，纯手机 AIDE 开发的安卓 APP。</p>
+          <div class="project-meta">
+            <span>Android</span>
+            <span>8 版本迭代</span>
+            <span>AIDE</span>
+          </div>
+          <div class="project-status status-stopped" style="margin-top:14px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+            下载服务已停止
           </div>
         </div>
-        <span class="qr-hint">手机扫码 · 直接下载安装</span>
-        <button class="copy-btn" id="copyBtn" type="button">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span id="copyTxt">复制下载链接</span>
-        </button>
       </div>
-      <div class="dl-notice">
-        <div class="dl-notice-title">📱 安装提示</div>
-        <p>下载完成后安装时，安卓系统可能提示「未知来源应用」或「危险文件」—— 这是系统的正常安全提醒，因为本 APP 使用个人签名证书打包，非应用商店上架应用。</p>
-        <p><strong>安装方法：</strong>点击「仍然安装」或前往「设置 → 安全 → 允许未知来源」开启权限即可正常安装。本 APK 经作者自主签名打包，安全无毒，请放心使用。</p>
+      <div class="project-card reveal">
+        <div class="project-cover" style="background:linear-gradient(135deg,rgba(61,220,132,.1),rgba(255,138,61,.1))">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#3ddc84" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+        </div>
+        <div class="project-body">
+          <h3>更多作品</h3>
+          <p>持续创作中... 期待更多有趣的项目与你分享。</p>
+          <div class="project-meta">
+            <span>Coming Soon</span>
+          </div>
+          <div class="project-status status-dev" style="margin-top:14px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            开发中
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 隐私 ============ -->
-<section id="privacy">
+<!-- ============ 联系我 ============ -->
+<section id="contact">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">✦ 隐私与合规</span>
-      <h2>透明、<span class="grad-text">安全</span>、守规矩</h2>
+      <h2>联系<span class="grad-text">我</span></h2>
+      <p>欢迎交流讨论，一起探索技术的边界</p>
     </div>
-    <div class="privacy reveal">
-      <h3>🛡️ 隐私说明</h3>
-      <ul>
-        <li>本 APP 不强制注册账号，基础浏览无需提供个人信息。</li>
-        <li>如使用 AI 聊天、评论等功能，仅在你主动输入时处理相关内容，用于本次响应，不做长期留存。</li>
-        <li>本地缓存（如播放记录、偏好）仅存储于你的设备，可在设置中一键清除。</li>
-        <li>不会出售或向第三方共享你的个人数据。</li>
-        <li>APP 所需的网络权限仅用于获取视频与热榜内容，权限用途均在安装时明示。</li>
-      </ul>
-
-      <h3 style="margin-top:22px">📋 数据收集与存储规则</h3>
-      <ul>
-        <li><strong>收集范围：</strong>本 APP 仅在网络请求中传输必要的设备型号、系统版本（用于适配），不收集身份证、手机号等敏感个人信息。</li>
-        <li><strong>存储规则：</strong>用户产生的数据（浏览记录、偏好设置）仅存储在本地设备，不上传服务器，卸载即清除。</li>
-        <li><strong>API 调用：</strong>视频流和热榜数据通过公开接口获取，仅做内容展示，不做后台留存或用户画像分析。</li>
-        <li><strong>第三方服务：</strong>AI 聊天功能依赖第三方大语言模型 API，对话内容仅用于本次回复，不用于训练或长期存储。</li>
-      </ul>
-
-      <h3 style="margin-top:22px">⚠️ 合规声明</h3>
-      <ul>
-        <li>本 APP 为作者 <strong>木小川666</strong> 自主开发，仅分发 HotVideo 原创应用，不含任何破解、盗版资源。</li>
-        <li>APP 内所有内容来源于公开接口聚合展示，不存储、不传播任何视频源文件。</li>
-        <li>严禁利用本 APP 传播违规、色情、暴力、侵权内容，违者后果自负。</li>
-        <li>请仅通过本页官方渠道下载，以防被第三方篡改植入恶意代码。</li>
-      </ul>
-
-      <div class="warn">⚠️ 免责声明：本 APP 仅供学习交流使用，不用于商业用途。视频及热榜内容版权归原作者所有，本 APP 不承担因不当使用产生的任何法律责任。如有侵权请联系作者删除。</div>
+    <div class="contact-grid">
+      <a class="contact-card reveal" href="https://github.com/muxiaochuan666" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+        <h3>GitHub</h3>
+        <p>@muxiaochuan666</p>
+      </a>
+      <div class="contact-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <h3>Email</h3>
+        <p>欢迎邮件联系</p>
+      </div>
+      <div class="contact-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <h3>网站</h3>
+        <p>muxiaochuan666.github.io</p>
+      </div>
     </div>
   </div>
 </section>
@@ -487,98 +354,17 @@ footer .copy{font-size:12.5px;color:var(--muted-2)}
 <!-- ============ 页脚 ============ -->
 <footer>
   <div class="wrap">
-    <a class="brand" href="#top"><img class="mark" src="assets/icon.svg" alt=""><span>HotVideo<small>热点视频</small></span></a>
-    <div class="f-links">
-      <a href="#features">功能</a>
-      <a href="#screens">截图</a>
-      <a href="#changelog">版本日志</a>
-      <a href="#download">下载</a>
-      <a href="#privacy">隐私说明</a>
-      <a data-release href="#" target="_blank" rel="noopener">GitHub 仓库</a>
-    </div>
-    <p class="copy">© 2026 HotVideo · 纯手机 AIDE 自主开发 · GitHub Pages 免费托管 · 仅供学习交流使用</p>
+    <p>© 2026 木小川666 · 用 <span class="heart">❤</span> 代码创造价值</p>
+    <p style="margin-top:10px;font-size:12px;color:var(--muted-2)">GitHub Pages 免费托管 · 仅供学习交流使用</p>
   </div>
 </footer>
 
-<!-- ============ 灯箱 ============ -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <span class="close" id="lbClose">&times;</span>
-  <img id="lbImg" src="" alt="放大预览">
-</div>
-
 <script>
-/* ============================================================
-   配置区 —— 只需改这一处即可启用 CDN 加速 / 备用下载 / 二维码
-   把 '你的用户名' 改成你的 GitHub 用户名（仓库须为 用户名.github.io）
-   ============================================================ */
-const CONFIG = {
-  GITHUB_USER: 'muxiaochuan666',
-  APK_FILE: 'HotVideo.apk',
-  VERSION: 'V8',
-  UPDATE_DATE: '2026-07-09'
-};
-
-const PAGES_URL  = `https://${CONFIG.GITHUB_USER}.github.io`;
-const CDN_URL    = `https://cdn.jsdelivr.net/gh/${CONFIG.GITHUB_USER}/${CONFIG.GITHUB_USER}.github.io@main/${CONFIG.APK_FILE}`;
-const RELEASE_URL= `https://github.com/${CONFIG.GITHUB_USER}/${CONFIG.GITHUB_USER}.github.io/releases`;
-const QR_API     = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&data=${encodeURIComponent(CDN_URL)}`;
-
-(function init(){
-  const configured = CONFIG.GITHUB_USER && CONFIG.GITHUB_USER !== '你的用户名';
-
-  // 启用 CDN 加速直链
-  if(configured){
-    document.querySelectorAll('[data-cdn]').forEach(a => { a.href = CDN_URL; });
-  }
-  // 启用 GitHub Release 备用链接
-  document.querySelectorAll('[data-release]').forEach(a => { a.href = RELEASE_URL; });
-
-  // 二维码（已配置时加载，失败则显示提示）
-  const qrImg = document.getElementById('qrImg');
-  const qrFallback = document.getElementById('qrFallback');
-  if(configured){
-    qrImg.src = QR_API;
-    qrImg.onerror = () => { qrImg.style.display='none'; qrFallback.style.display='block'; };
-  } else {
-    qrImg.style.display='none'; qrFallback.style.display='block';
-  }
-
-  // 复制下载链接
-  const copyBtn = document.getElementById('copyBtn');
-  const copyTxt = document.getElementById('copyTxt');
-  copyBtn.addEventListener('click', async () => {
-    const link = configured ? CDN_URL : PAGES_URL + '/' + CONFIG.APK_FILE;
-    try{
-      await navigator.clipboard.writeText(link);
-    }catch(e){
-      const t=document.createElement('textarea');t.value=link;document.body.appendChild(t);t.select();
-      try{document.execCommand('copy');}catch(_){}t.remove();
-    }
-    copyTxt.textContent='已复制 ✓';
-    setTimeout(()=>copyTxt.textContent='复制下载链接',1800);
-  });
-})();
-
-/* 导航滚动样式 */
-const nav = document.getElementById('nav');
-const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
-onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
-
 /* 滚动揭示 */
 const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-},{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+},{threshold:.15, rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* 截图灯箱 */
-const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lbImg'), lbClose=document.getElementById('lbClose');
-document.querySelectorAll('.shot').forEach(s=>{
-  s.addEventListener('click',()=>{ lbImg.src=s.dataset.img; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; });
-});
-const closeLb=()=>{ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; setTimeout(()=>{lbImg.src='';},200); };
-lbClose.addEventListener('click',closeLb);
-lb.addEventListener('click',e=>{ if(e.target===lb) closeLb(); });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
 </script>
 </body>
 </html>
