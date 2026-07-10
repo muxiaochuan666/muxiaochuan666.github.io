@@ -337,11 +337,11 @@ footer .heart{color:var(--accent)}
         <h3>GitHub</h3>
         <p>@muxiaochuan666</p>
       </a>
-      <a class="contact-card reveal" href="mailto:3095333976@qq.com">
+      <div class="contact-card reveal" onclick="copyEmail()" style="cursor:pointer">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <h3>Email</h3>
-        <p>3095333976@qq.com</p>
-      </a>
+        <p id="emailText">3095333976@qq.com</p>
+      </div>
       <div class="contact-card reveal">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         <h3>网站</h3>
@@ -365,6 +365,25 @@ const io = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
 },{threshold:.15, rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* 复制邮箱 */
+function copyEmail(){
+  const email = '3095333976@qq.com';
+  navigator.clipboard.writeText(email).then(()=>{
+    const el = document.getElementById('emailText');
+    const old = el.textContent;
+    el.textContent = '已复制 ✓';
+    setTimeout(()=>el.textContent = old, 1500);
+  }).catch(()=>{
+    const t = document.createElement('textarea');
+    t.value = email; document.body.appendChild(t); t.select();
+    document.execCommand('copy'); t.remove();
+    const el = document.getElementById('emailText');
+    const old = el.textContent;
+    el.textContent = '已复制 ✓';
+    setTimeout(()=>el.textContent = old, 1500);
+  });
+}
 </script>
 </body>
 </html>
